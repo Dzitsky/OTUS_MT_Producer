@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using CommonNamespace;
 using MassTransit;
 using MassTransit.RabbitMqTransport;
@@ -21,8 +23,8 @@ namespace Producer
                 });
 
                 //SEND
-                /*
-                var queueName = "masstransit_event_queue_1";
+                /**/
+                var queueName = "masstransit";
                 var sendEndpoint = await busControl.GetSendEndpoint(new Uri($"queue:{queueName}"));
                 if (sendEndpoint == null)
                 {
@@ -32,9 +34,9 @@ namespace Producer
                 {
                     Content = "message!"
                 }, CancellationToken.None);                    
-                */
+                /**/
                 
-                /*
+                /**/
                 //REQUEST
                 var response = await busControl.Request<Request, CommonNamespace.Response>( new Request
                 {
@@ -44,7 +46,7 @@ namespace Producer
                     }
                 }, CancellationToken.None);
                 Console.WriteLine($"Response success: {response.Message.IsSuccess}");
-                */
+                /**/
             }
             finally
             {
@@ -58,12 +60,12 @@ namespace Producer
         /// <param name="configurator"></param>
         private static void Configure(IRabbitMqBusFactoryConfigurator configurator)
         {
-            configurator.Host("hawk.rmq.cloudamqp.com",
-                "ykziztbb",
+            configurator.Host("moose.rmq.cloudamqp.com",
+                "wxuscjul",
                 h =>
                 {
-                    h.Username("ykziztbb");
-                    h.Password("oZaUpy2Sru1P0b04K9ghjx3MSFpXTMIU");
+                    h.Username("wxuscjul");
+                    h.Password("d86v39oHoWxr-ZWWZpDTO6uVhdBlUTVv");
                 });
         }
     }
